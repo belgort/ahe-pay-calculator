@@ -31,3 +31,23 @@ footer {
 .navbar > a, .navbar > a:hover, .navbar > a:active, .navbar > a:focus {
     color: #fff;
 }
+
+.btn1 {
+    background: #535486;
+    color: #fff;
+}
+
+.btn1:hover {
+    background: #002855;
+    color: #fff;
+}
+
+.btn2 {
+    background: #4E87A0;
+    color: #fff;
+}
+
+.btn2:hover {
+    background: #002855;
+    color: #fff;
+}
