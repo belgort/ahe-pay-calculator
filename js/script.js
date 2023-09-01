@@ -1,71 +1,50 @@
-// script.js
-
 function formatNumber(num) {
     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
 }
 
-$('#calc').on('click', function () {
-    if ($('#dept').val() == '-') {
+
+document.querySelector('#calc').addEventListener('click', () => {
+    if (document.querySelector('#dept').value === '-') {
         alert('Please select a Department');
         return false;
     }
-    var output = $('#output');
-    var hours = $('#hours').val();
+    const output = document.querySelector('#output');
+    const hours = document.querySelector('#hours').value;
 
-    var dept = parseInt($('#dept').val());
+    const dept = parseInt(document.querySelector('#dept').value);
+    const qtr_pay = 17762.16;
+    const calculation = (hours / dept) * qtr_pay;
 
-    // var qtr_pay = 13443.95;
-    // var qtr_pay = 14245.54
-    // var qtr_pay = 14487.71;
-    var qtr_pay = 17762.16;
-    var calculation = (hours / dept) * qtr_pay;
-    output.html('<h2 class="pt-3 font-weight-bold">Your Results</h2><h3>Parity-Pay Calculation</h3><div class="bg-primary p-5 text-light rounded">' + 'Your compensation at 69% parity pay would be: $' + formatNumber(calculation.toFixed(2)) + '</div>');
+    output.innerHTML = '<h2 class="pt-3 font-weight-bold">Your Results</h2><h3>Parity-Pay Calculation</h3><div class="bg-primary p-5 text-light rounded">' + 'Your compensation at 69% parity pay would be: $' + formatNumber(calculation.toFixed(2)) + '</div>';
 });
 
-$('#hourly').on('click', function () {
-    if ($('#dept').val() == '-') {
+
+document.querySelector('#hourly').addEventListener('click', () => {
+    let status;
+
+    if (document.querySelector('#dept').value === '-') {
         alert('Please select a Department');
         return false;
     }
 
-    if ($('#status').val() == '-') {
+    if (document.querySelector('#status').value === '-') {
         alert('Please select a Status');
         return false;
     } else {
-        var status = $('#status').val();
+        status = document.querySelector('#status').value;
     }
 
-    var lecture_rate;
-    var lab_rate;
-    var final_rate;
+    let lecture_rate, lab_rate, final_rate;
 
     if (status == 'adjunct') {
-        // lecture_rate = 71.67;
-        // lab_rate = 61.21;
-        // final_rate = 138.71;
-        // lecture_rate = 73.68;
-        // lab_rate = 62.92;
-        // final_rate = 142.60;
         lecture_rate = 85.48;
         lab_rate = 73.01;
         final_rate = 165.45;
     } else if (status == 'affiliate') {
-        // lecture_rate = 81.03;
-        // lab_rate = 70.46;
-        // final_rate = 158.53;
-        // lecture_rate = 83.30;
-        // lab_rate = 72.43;
-        // final_rate = 162.97;
         lecture_rate = 96.64;
         lab_rate = 84.04;
         final_rate = 189.09;
     } else if (status == 'associate') {
-        // lecture_rate = 82.35;
-        // lab_rate = 71.56;
-        // final_rate = 160.73;
-        // lecture_rate = 84.66;
-        // lab_rate = 73.56;
-        // final_rate = 165.23;
         lecture_rate = 98.22;
         lab_rate = 85.35;
         final_rate = 191.71;
@@ -75,75 +54,51 @@ $('#hourly').on('click', function () {
         final_rate = 0;
     }
 
-    var output = $('#output');
-    var lecture = $('#lecture').val();
-    var lab = $('#lab').val();
-    var final = $('#final').val();
+    let output = document.querySelector('#output');
+    let lecture = document.querySelector('#lecture').value;
+    let lab = document.querySelector('#lab').value;
+    let final = document.querySelector('#final').value;
 
-    var calculation = (lecture * 10) * lecture_rate + lab * lab_rate + final * final_rate;
-    output.html('<h2 class="pt-3 font-weight-bold">Your Results</h2><h3>Hourly Calculation</h3><div class="bg-secondary p-5 text-light rounded">' + 'Your compensation using the hourly-pay method would be: $' + formatNumber(calculation.toFixed(2)) + '. This calculation is based on a 10-week quarter.</div>');
+    let calculation = (lecture * 10) * lecture_rate + lab * lab_rate + final * final_rate;
+    output.innerHTML = '<h2 class="pt-3 font-weight-bold">Your Results</h2><h3>Hourly Calculation</h3><div class="bg-secondary p-5 text-light rounded">' + 'Your compensation using the hourly-pay method would be: $' + formatNumber(calculation.toFixed(2)) + '. This calculation is based on a 10-week quarter.</div>';
 });
 
-$('#both').on('click', function () {
-    if ($('#dept').val() == '-') {
+document.querySelector('#both').addEventListener('click', () => {
+    let status;
+    if (document.querySelector('#dept').value === '-')  
+    {
         alert('Please select a Department');
         return false;
     }
 
-    if ($('#status').val() == '-') {
+    if (document.querySelector('#status').value === '-') {
         alert('Please select a Status');
         return false;
     } else {
-        status = $('#status').val();
+        status = document.querySelector('#status').value;
     }
 
-    // do parity first
-    var output = $('#output');
-    var hours = $('#hours').val();
+    let output = document.querySelector('#output');
+    let hours = document.querySelector('#hours').value;
+    let dept = parseInt(document.querySelector('#dept').value);
+    let qtr_pay = 17762.16;
+    let parity_calculation = (parseFloat(hours) / dept) * qtr_pay;
+    let output_str = '';
+    let lecture_rate;
+    let lab_rate;
+    let final_rate;
 
-    var dept = parseInt($('#dept').val());
+    output_str += '<h2 class="pt-3 font-weight-bold">Your Results</h2><h3>Parity-Pay Calculation</h3><div class="bg-light p-5 rounded mb-3 shadow border border-1">' + 'Your compensation at 65% parity pay would be: <strong>$' + formatNumber(parity_calculation.toFixed(2)) + '</strong></div>';
 
-    // var qtr_pay = 13443.95;
-    // var qtr_pay = 14245.54
-    // var qtr_pay = 14487.71;
-    var qtr_pay = 17762.16;
-    var parity_calculation = (hours / dept) * qtr_pay;
-    var output_str = '';
-
-    output_str += '<h2 class="pt-3 font-weight-bold">Your Results</h2><h3>Parity-Pay Calculation</h3><div class="bg-primary p-5 text-light rounded mb-3">' + 'Your compensation at 65% parity pay would be: <strong>$' + formatNumber(parity_calculation.toFixed(2)) + '</strong></div>';
-
-    var lecture_rate;
-    var lab_rate;
-    var final_rate;
-
-    // now lets do hourly
     if (status == 'adjunct') {
-        // lecture_rate = 71.67;
-        // lab_rate = 61.21;
-        // final_rate = 138.71;
-        // lecture_rate = 73.68;
-        // lab_rate = 62.92;
-        // final_rate = 142.60;
         lecture_rate = 85.48;
         lab_rate = 73.01;
         final_rate = 165.45;
     } else if (status == 'affiliate') {
-        // lecture_rate = 81.03;
-        // lab_rate = 70.46;
-        // final_rate = 158.53;
-        // lecture_rate = 83.30;
-        // lab_rate = 72.43;
-        // final_rate = 162.97;
         lecture_rate = 96.64;
         lab_rate = 84.04;
         final_rate = 189.09;
     } else if (status == 'associate') {
-        // lecture_rate = 82.35;
-        // lab_rate = 71.56;
-        // final_rate = 160.73;
-        // lecture_rate = 84.66;
-        // lab_rate = 73.56;
-        // final_rate = 165.23;
         lecture_rate = 98.22;
         lab_rate = 85.35;
         final_rate = 191.71;
@@ -153,19 +108,19 @@ $('#both').on('click', function () {
         final_rate = 0;
     }
 
-    var lecture = parseInt($('#lecture').val());
-    var lab = parseInt($('#lab').val());
-    var final = parseInt($('#final').val());
+    let lecture = parseInt(document.querySelector('#lecture').value);
+    let lab = parseInt(document.querySelector('#lab').value);
+    let final = parseInt(document.querySelector('#final').value);
 
-    var hourly_calculation = (lecture * 10) * (lecture_rate) + (lab * 10) * lab_rate + (final * final_rate);
-    output_str += '<h3 mt-3>Hourly Pay Calculation</h3><div class="bg-secondary p-5 text-light rounded">' + 'Your compensation using the hourly-pay method would be: <strong>$' + formatNumber(hourly_calculation.toFixed(2)) + '</strong>. This calculation is based on a 10-week quarter.</div>';
+    let hourly_calculation = (lecture * 10) * lecture_rate + (lab * 10) * lab_rate + (final * final_rate);
+
+    output_str += '<h3 mt-3>Hourly Pay Calculation</h3><div class="bg-light p-5 text-dark rounded shadow border border-1">' + 'Your compensation using the hourly-pay method would be: <strong>$' + formatNumber(hourly_calculation.toFixed(2)) + '</strong>. This calculation is based on a 10-week quarter.</div>';
 
     if (parity_calculation > hourly_calculation) {
-        output_str += '<div class="mt-4 alert alert-success">Your parity pay is greater than your hourly pay. Hence, you will be compensated the parity pay.</div>';
+    output_str += '<div class="mt-4 alert alert-success shadow">Your parity pay is greater than your hourly pay. Hence, you will be compensated the parity pay.</div>';
     } else {
-        output_str += '<div class="mt-4 alert alert-success">Your hourly pay is greater than your parity pay. Hence, you will be compensated the hourly pay.</div>';
+        output_str += '<div class="mt-4 alert alert-success shadow">Your hourly pay is greater than your parity pay. Hence, you will be compensated the hourly pay.</div>';
     }
 
-    output.html(output_str);
-
+    output.innerHTML = output_str;
 });
