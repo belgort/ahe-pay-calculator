@@ -15,7 +15,7 @@ document.querySelector('#calc').addEventListener('click', () => {
     const qtr_pay = 17762.16;
     const calculation = (hours / dept) * qtr_pay;
 
-    output.innerHTML = '<h2 class="pt-3 font-weight-bold">Your Results</h2><h3>Parity-Pay Calculation</h3><div class="bg-primary p-5 text-light rounded">' + 'Your compensation at 69% parity pay would be: $' + formatNumber(calculation.toFixed(2)) + '</div>';
+    output.innerHTML = '<h2 class="pt-3 font-weight-bold">Your Results</h2><h3>Parity-Pay Calculation</h3><div class="bg-primary p-5 text-light rounded">' + 'Your compensation at 72% parity pay would be: $' + formatNumber(calculation.toFixed(2)) + '</div>';
 });
 
 
@@ -88,7 +88,7 @@ document.querySelector('#both').addEventListener('click', () => {
     let lab_rate;
     let final_rate;
 
-    output_str += '<h2 class="pt-3 font-weight-bold">Your Results</h2><h3>Parity-Pay Calculation</h3><div class="bg-light p-5 rounded mb-3 shadow border border-1">' + 'Your compensation at 65% parity pay would be: <strong>$' + formatNumber(parity_calculation.toFixed(2)) + '</strong></div>';
+    output_str += '<h2 class="pt-3 font-weight-bold">Your Results</h2><h3>Parity-Pay Calculation</h3><div class="bg-light p-5 rounded mb-3 shadow border border-1">' + 'Your compensation at 72% parity pay would be: <strong>$' + formatNumber(parity_calculation.toFixed(2)) + '</strong></div>';
 
     if (status == 'adjunct') {
         lecture_rate = 85.48;
